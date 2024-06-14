@@ -57,7 +57,9 @@ app.use("/api/users", userRoute);
 app.use("/admin", adminRoute);
 const getToken = async () => {
   // app.locals.spotifyToken = 'BQCaNQqHbgDBW00BZd-IO_pUAwQMoG73HVMBQokEt86sPUmZLa0_CaqRN4cbl2BG6uj3AUzx8wo8rdKBVYOZYYI0o-KGHBnWUY3OzEVQoxOeztumB_g'
-  let tokenData = await fetch("http://localhost:5000/admin/refreshtoken");
+  let tokenData = await fetch(
+    "https://story-time-admin-1.onrender.com/admin/refreshtoken"
+  );
   let token = await tokenData.json();
   if (token.success) {
     app.locals.spotifyToken = token.token.access_token;
@@ -70,7 +72,9 @@ const getToken = async () => {
 };
 
 const updateCount = async () => {
-  let countData = await fetch("http://localhost:5000/admin/count");
+  let countData = await fetch(
+    "https://story-time-admin-1.onrender.com/admin/count"
+  );
   let count = await countData.json();
   if (count.success) {
     console.log(count.data);
