@@ -21,7 +21,7 @@ const router = express.Router();
 router.post("/register", createUser);
 router.get("/verifyEmail/:verifyToken", verifyEmail);
 router.post("/login", loginUser);
-router.get("/refreshtoken", checkToken, generateSpotifyRefreshToken);
+router.get("/refreshtoken", generateSpotifyRefreshToken);
 router.get("/profile", checkToken, getUserProfile);
 router.post("/profile", checkToken, updateUserProfile);
 router.post("/preferredlanguage", checkToken, updatePreferredLanguage);

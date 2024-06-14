@@ -104,6 +104,7 @@ const categories = async (req, res, next) => {
         headers
       );
       const edata = await sdata.json();
+      console.log(edata);
       const author_count = edata.shows.items.map((e) => {
         return { author: e?.publisher, count: e?.total_episodes };
       }); //.filter((a) => a?.publisher !== undefined)

@@ -58,6 +58,8 @@ app.use("/admin", adminRoute);
 const getToken = async () => {
   // app.locals.spotifyToken = 'BQCaNQqHbgDBW00BZd-IO_pUAwQMoG73HVMBQokEt86sPUmZLa0_CaqRN4cbl2BG6uj3AUzx8wo8rdKBVYOZYYI0o-KGHBnWUY3OzEVQoxOeztumB_g'
   let tokenData = await fetch("http://localhost:5000/admin/refreshtoken");
+  console.log("tokenData");
+  console.log(tokenData);
   let token = await tokenData.json();
   if (token.success) {
     app.locals.spotifyToken = token.token.access_token;
@@ -81,10 +83,10 @@ const updateCount = async () => {
   }
 };
 
-// getToken();
+getToken();
 
 setInterval(() => {
-  // getToken();
+  getToken();
 }, 3500000);
 
 setInterval(() => {
