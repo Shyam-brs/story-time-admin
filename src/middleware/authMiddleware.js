@@ -21,7 +21,6 @@ const checkToken = expressAsyncHandler(async (req, res, next) => {
       res.status(401);
       throw new Error("Invalid token");
     }
-
   } else {
     res.status(401);
     throw new Error("Unauthorized");
@@ -29,9 +28,11 @@ const checkToken = expressAsyncHandler(async (req, res, next) => {
 });
 
 const checkAuthenticated = (req, res, next) => {
-  if (req.headers.host == "localhost:5000") { return next() }
-  if (req.isAuthenticated()) { return next() }
-  res.redirect("/admin/login")
-}
+  // if (req.headers.host == "localhost:5000") { return next() }
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/admin/login");
+};
 
 export { checkToken, checkAuthenticated };

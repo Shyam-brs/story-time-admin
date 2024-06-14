@@ -1,5 +1,5 @@
 import express from "express";
-import passport from '../config/passport.js';
+import passport from "../config/passport.js";
 import {
   login,
   userList,
@@ -17,17 +17,23 @@ import {
   getUserLibraries,
   generateSpotifyRefreshToken,
   updateCount,
-  logout
+  createAdmin,
+  logout,
 } from "../controllers/adminController.js";
 import { checkAuthenticated } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.post("/login", passport.authenticate('local', {
-  successReturnToOrRedirect: '/admin',
-  failureRedirect: '/admin/login',
-  failureMessage: true
-}));
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successReturnToOrRedirect: "/admin",
+    failureRedirect: "/admin/login",
+    failureMessage: true,
+  })
+);
+
+router.get("/add", createAdmin);
 
 router.get("/login", login);
 router.get("/", checkAuthenticated, dashboard);
